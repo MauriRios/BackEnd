@@ -12,52 +12,49 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 @RestController
+@RequestMapping ("educacion/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EducacionController {
     
     @Autowired IEducacionService ieducacionService;
     
-    @GetMapping("educacion/traer")
+    @GetMapping("traer")
     public List<Educacion> getEducacion() {
         return ieducacionService.getEducacion();
     }
+    @GetMapping("/{id}")
+    public Educacion findEducacion(@PathVariable("id") Long id){
+        return ieducacionService.findEducacion(id);
+    }    
     
-    @PostMapping("educacacion/crear")
-    public String createEduacion(@RequestBody Educacion educacion) {
-        ieducacionService.saveEducacion(educacion);
-        return "Creado correctamente";
+    @PostMapping("crear")
+    public void createEduacion(@RequestBody Educacion educacion) {
+        ieducacionService.saveEducacion(educacion);       
     }
     
-    @DeleteMapping("educacion/borrar/{id}")
-    public String deleteEducacion(@PathVariable Long id) {
+    @DeleteMapping("borrar/{id}")
+    public void deleteEducacion(@PathVariable("id") Long id) {
         ieducacionService.deleteEducacion(id);
-        return  "Eliminado correctamente";
     }
     
-    @PutMapping("educacion/editar/{id}")
-    public Educacion editEducacion (@PathVariable Long id,
-                                    @RequestParam("institucion") String nuevoInstitucion,
-                                    @RequestParam("titulo") String nuevoTitulo,
-                                    @RequestParam("periodoEstudio") String nuevoPeriodoEstudio,
-                                    @RequestParam("img") String nuevoImg) {
-    Educacion educacion = ieducacionService.findEducacion(id);
-        
-        
-    educacion.setInstitucion(nuevoInstitucion);
-    educacion.setTitulo(nuevoTitulo); 
-    educacion.setPeriodoEstudio(nuevoPeriodoEstudio);
-    educacion.setImg(nuevoImg);
+    @PutMapping("editar/{id}")
+    public Educacion editEducacion (@PathVariable("id") Long id,
+                                   @RequestBody Educacion educacion)
+    {
     
+    educacion.setId(id);  
     ieducacionService.saveEducacion(educacion);
+    
     return educacion;
     }
     
-    @GetMapping("educacion/traer/perfil")
+    @GetMapping("traer/perfil")
     public Educacion findEducacion() {
         return ieducacionService.findEducacion((long) 1);
     }

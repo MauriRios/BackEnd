@@ -11,48 +11,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping  ("acercade")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AcercaDeController {
 
     @Autowired
     IAcercaDeService iacercaDeService;
 
-    @GetMapping("acercade/traer")
+    @GetMapping("/traer")
     public List<AcercaDe> getAcercaDe() {
         return iacercaDeService.getAcercaDe();
     }
 
-    @PostMapping("acercade/crear")
-    public String createAcercaDe(@RequestBody AcercaDe acercaDe) {
-        iacercaDeService.saveAcercaDe(acercaDe);
-        return "Creado correctamente";
+    @PostMapping("/crear")
+    public void createAcercaDe(@RequestBody AcercaDe acercaDe) {
+        iacercaDeService.saveAcercaDe(acercaDe);  
     }
 
-    @DeleteMapping("acercade/borrar/{id}")
-    public String deleteAcercaDe(@PathVariable Long id) {
+    @DeleteMapping("/borrar/{id}")
+    public void deleteAcercaDe(@PathVariable Long id) {
         iacercaDeService.deleteAcercaDe(id);
-        return "Eliminado correctamente";
+       
     }
 
-    @PutMapping("acercade/editar/{id}")
+    @PutMapping("/editar/{id}")
     public AcercaDe editAcercaDe(@PathVariable Long id,
-                                 @RequestParam("miInfo") String nuevoMiInfo,
-                                 @RequestParam("stackInfo") String nuevoStackInfo)
- {
-        AcercaDe acercaDe = iacercaDeService.findAcercaDe(id);
-
-        acercaDe.setMiInfo(nuevoMiInfo);
-        acercaDe.setStackInfo(nuevoStackInfo);
-
+                                 @RequestBody AcercaDe acercaDe)
+     { acercaDe.setId(id);
         iacercaDeService.saveAcercaDe(acercaDe);
         return acercaDe;
     }
     
-        @GetMapping("acercade/traer/perfil")
+        @GetMapping("/traer/perfil")
     public AcercaDe findAcercaDe() {
         return iacercaDeService.findAcercaDe((long) 1);
     }

@@ -12,53 +12,47 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping ("experiencia")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ExperienciaController {
     
     @Autowired IExperienciaService iexperienciaService;
     
-    @GetMapping("experiencia/traer")
+    @GetMapping("/traer")
     public List<Experiencia> getExperiencia() {
         return iexperienciaService.getExperiencia();
     }
     
-    @PostMapping("/experiencia/crear")
-    public String createExperiencia(@RequestBody Experiencia experiencia) {
+    @GetMapping("/{id}")
+    public Experiencia findExperiencia(@PathVariable("id") Long id){
+        return iexperienciaService.findExperiencia(id);
+    }    
+    
+    @PostMapping("/crear")
+    public void createExperiencia(@RequestBody Experiencia experiencia) {
         iexperienciaService.saveExperiencia(experiencia);
-        return "Creado correctamente";
+        
     }
     
-    @DeleteMapping("/experiencia/borrar/{id}")
-    public String deleteExperiencia(@PathVariable Long id) {
+    @DeleteMapping("/borrar/{id}")
+    public void deleteExperiencia(@PathVariable("id") Long id) {
         iexperienciaService.deleteExperiencia(id);
-        return  "Eliminado correctamente";
+        
     }
     
-    @PutMapping("/experiencia/editar/{id}")
-    public Experiencia editExperiencia (@PathVariable Long id,
-                                @RequestParam("empresa") String nuevoEmpresa,
-                                @RequestParam("puesto") String nuevoPuesto,
-                                @RequestParam("periodoTrabajado") String nuevoPeriodoTrabajado,
-                                @RequestParam("img") String nuevoImg) 
-    {  
-    Experiencia experiencia = iexperienciaService.findExperiencia(id);
-        
-        
-    experiencia.setEmpresa(nuevoEmpresa);
-    experiencia.setPuesto(nuevoPuesto); 
-    experiencia.setPeriodoTrabajado(nuevoPeriodoTrabajado);
-    experiencia.setImg(nuevoImg);
+    @PutMapping("/editar/{id}")
+    public Experiencia editExperiencia (@PathVariable("id") Long id,
+                                        @RequestBody Experiencia experiencia)
+    {
     
+    experiencia.setId(id);  
     iexperienciaService.saveExperiencia(experiencia);
+    
     return experiencia;
     }
     
-    @GetMapping("/experiencia/traer/perfil")
-    public Experiencia findExperiencia() {
-        return iexperienciaService.findExperiencia((long) 1);
-    }
 }

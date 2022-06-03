@@ -30,6 +30,6 @@ public class Experiencia {
     private String periodoTrabajado;
     
     @NotNull
-    @Size(min= 1, max = 80, message = "No cumple con la longitud")
+    @Size(min= 1, max = 400, message = "No cumple con la longitud")
     private String img;
 }
