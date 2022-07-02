@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class ProyectoController {
     
     @Autowired IProyectoService iproyectoService;
@@ -28,35 +28,25 @@ public class ProyectoController {
     }
     
     @PostMapping("/proyecto/crear")
-    public String createProyecto(@RequestBody Proyecto proyecto) {
+    public void createProyecto(@RequestBody Proyecto proyecto) {
         iproyectoService.saveProyecto(proyecto);
-        return "Creado correctamente";
+        
     }
     
     @DeleteMapping("/proyecto/borrar/{id}")
-    public String deleteProyecto(@PathVariable Long id) {
+    public void deleteProyecto(@PathVariable Long id) {
         iproyectoService.deleteProyecto(id);
-        return  "Eliminado correctamente";
+        
     }
     
     @PutMapping("/proyecto/editar/{id}")
-    public Proyecto editProyecto (@PathVariable Long id,
-                                  @RequestParam("tituloProyecto") String nuevoTituloProyecto,
-                                  @RequestParam("descripcionProyecto") String nuevoDescripcionProyecto)
+    public Proyecto editProyecto (@PathVariable("id") Long id,
+                                        @RequestBody Proyecto proyecto)
     {
-    Proyecto proyecto = iproyectoService.findProyecto(id);
-        
-        
-    proyecto.setTituloProyecto(nuevoTituloProyecto);
-    proyecto.setDescripcionProyecto(nuevoDescripcionProyecto); 
-
-    
+    proyecto.setId(id);  
     iproyectoService.saveProyecto(proyecto);
+    
     return proyecto;
     }
-    
-    @GetMapping("/proyecto/traer/perfil")
-    public Proyecto findProyecto() {
-        return iproyectoService.findProyecto((long) 1);
-    }
+
 }

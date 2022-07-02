@@ -21,8 +21,7 @@ public class HardAndSoft {
     @Size(min= 1, max = 50, message = "No cumple con la longitud")
     private String skill;
     
-    @NotNull
-    @Size(min= 1, max = 50, message = "No cumple con la longitud")
-    private String skillbar;    
+    
+    private int skillBar;    
   
 }

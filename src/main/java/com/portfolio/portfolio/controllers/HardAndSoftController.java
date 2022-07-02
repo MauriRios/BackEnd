@@ -13,51 +13,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping  ("skill")
+@CrossOrigin(origins = "*")
 public class HardAndSoftController {
     
     @Autowired IHardAndSoftService ihardAndSoftService;
     
-    @GetMapping("skill/traer")
+    @GetMapping("/traer")
     public List<HardAndSoft> getHardAndSoft() {
         return ihardAndSoftService.getHardAndSoft();
     }
     
-    @PostMapping("/skill/crear")
-    public String createHardAndSoft(@RequestBody HardAndSoft hardAndSoft) {
+    @PostMapping("/crear")
+    public void createHardAndSoft(@RequestBody HardAndSoft hardAndSoft) {
         ihardAndSoftService.saveHardAndSoft(hardAndSoft);
-        return "Creado correctamente";
+       
     }
     
-    @DeleteMapping("/skill/borrar/{id}")
-    public String deleteHardAndSoft(@PathVariable Long id) {
+    @DeleteMapping("/borrar/{id}")
+    public void deleteHardAndSoft(@PathVariable Long id) {
         ihardAndSoftService.deleteHardAndSoft(id);
-        return  "Eliminado correctamente";
+        
     }
     
-    @PutMapping("/skill/editar/{id}")
+    @PutMapping("/editar/{id}")
     public HardAndSoft editHardAndSoft (@PathVariable Long id,
-                                        @RequestParam("skill") String nuevoSkill,
-                                        @RequestParam("skillBar") String nuevoSkillBar)
-    {
-    HardAndSoft hardAndSoft = ihardAndSoftService.findHardAndSoft(id);
-        
-        
-    hardAndSoft.setSkill(nuevoSkill);
-    hardAndSoft.setSkillbar(nuevoSkillBar);
-
-    
-    ihardAndSoftService.saveHardAndSoft(hardAndSoft);
-    return hardAndSoft;
-    }
-    
-    @GetMapping("/skill/traer/perfil")
-    public HardAndSoft findHardAndSoft() {
-        return ihardAndSoftService.findHardAndSoft((long) 1);
+                                        @RequestBody HardAndSoft hardAndSoft)
+     { hardAndSoft.setId(id);
+        ihardAndSoftService.saveHardAndSoft(hardAndSoft);
+        return hardAndSoft;
     }
     
 }
