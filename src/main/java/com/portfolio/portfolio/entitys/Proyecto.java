@@ -23,7 +23,7 @@ public class Proyecto {
     private String tituloProyecto;
     
     @NotNull
-    @Size(min= 1, max = 250, message = "No cumple con la longitud")
+    @Size(min= 1, max = 700, message = "No cumple con la longitud")
     private String descripcionProyecto;
     
 }
