@@ -1,19 +1,20 @@
-/**
+/*
 package com.portfolio.portfolio.util;
 
-
+import com.portfolio.portfolio.security.entity.Rol;
+import com.portfolio.portfolio.security.enums.RolNombre;
 import com.portfolio.portfolio.security.service.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
+*/
 /**
  * MUY IMPORTANTE: ESTA CLASE SÓLO SE EJECUTARÁ UNA VEZ PARA CREAR LOS ROLES.
  * UNA VEZ CREADOS SE DEBERÁ ELIMINAR O BIEN COMENTAR EL CÓDIGO
  *
  */
-/**
+   /*   
 @Component
 public class util implements CommandLineRunner {
 
@@ -29,6 +30,6 @@ public class util implements CommandLineRunner {
          
     }
     
-}
-        **/
+}*/
+      
 

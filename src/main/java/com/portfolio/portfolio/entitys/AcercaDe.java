@@ -18,11 +18,11 @@ public class AcercaDe {
     private Long id;
     
     @NotNull
-    @Size(min= 1, max = 600, message = "No cumple con la longitud")
+    @Size(min= 1, max = 700, message = "No cumple con la longitud")
     private String miInfo;
     
     @NotNull
-    @Size(min= 1, max = 600, message = "No cumple con la longitud")
+    @Size(min= 1, max = 700, message = "No cumple con la longitud")
     private String stackInfo;
 
 }
