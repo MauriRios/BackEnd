@@ -4,6 +4,7 @@ import com.portfolio.portfolio.entitys.AcercaDe;
 import com.portfolio.portfolio.interfaces.IAcercaDeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,17 +28,20 @@ public class AcercaDeController {
         return iacercaDeService.getAcercaDe();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public void createAcercaDe(@RequestBody AcercaDe acercaDe) {
         iacercaDeService.saveAcercaDe(acercaDe);  
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public void deleteAcercaDe(@PathVariable Long id) {
         iacercaDeService.deleteAcercaDe(id);
        
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/editar/{id}")
     public AcercaDe editAcercaDe(@PathVariable Long id,
                                  @RequestBody AcercaDe acercaDe)
