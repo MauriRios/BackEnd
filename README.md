@@ -1,11 +1,11 @@
 
 
-<h1>## Herramientas utilizadas en el desarrollo</h1>
+<h2>## Herramientas utilizadas en el desarrollo</h2>
 
-- Git/GitHub Versionado de la app
-- Back-End API CRUD en Java + Springboot
-- MYSQL en base de datos
+- <b>Git/GitHub</b> Versionado de la app
+- <b>Back-End</b> API CRUD en Java + Springboot
+- <b>MYSQL</b> en base de datos
 
-DER de base de datos:
+<b>DER</b> de base de datos:
 
 <img src="https://github.com/MauriRios/APFrontEnd/blob/main/src/assets/img/DER.jpg?raw=true" style="max-width: 100%; display: inline-block;" />
