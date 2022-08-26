@@ -1,4 +1,4 @@
-NOTA: En este repositorio se encuentra todo lo relacionado al Backtend del proyecto, para dirigirse al repositorio del Frontend hacer click <a href="https://github.com/MauriRios/APFrontEnd" target="_blank">aquí. </a>
+<i>NOTA: En este repositorio se encuentra todo lo relacionado al Backtend del proyecto, para dirigirse al repositorio del Frontend hacer click <a href="https://github.com/MauriRios/APFrontEnd" target="_blank">aquí. </a></i>
 
 <h1>Proyecto Argentina Programa Portfolio Personal (BackEnd)</h1>
 
