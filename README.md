@@ -2,6 +2,8 @@ NOTA: En este repositorio se encuentra todo lo relacionado al Backtend del proye
 
 <h1>Proyecto Argentina Programa Portfolio Personal (BackEnd)</h1>
 
+## Descripcion
+
 Se trata de una API REST realizada utilizando las tecnologías Java + Spring Boot bajo el modelo MVC para la lógica y MySQL para persistencia de datos.
 
 <h2>Herramientas utilizadas en el desarrollo</h2>
