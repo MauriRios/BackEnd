@@ -2,7 +2,7 @@
 
 <h1>Proyecto Argentina Programa Portfolio Personal (BackEnd)</h1>
 
-## Descripcion
+##  Descripción
 
 Se trata de una API REST realizada utilizando las tecnologías Java + Spring Boot bajo el modelo MVC para la lógica y MySQL para persistencia de datos.
 
